@@ -7,3 +7,8 @@
 
 ## To Run
 `java -cp src Main`
+
+## Methods:
+- `new Trie()`
+- `insert(String data)`
+- `search(String data)`

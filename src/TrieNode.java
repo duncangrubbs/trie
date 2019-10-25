@@ -27,6 +27,14 @@ public class TrieNode {
         return this.left == null && this.right == null;
     }
 
+    public boolean hasRight() {
+      return this.right != null;
+    }
+
+    public boolean hasLeft() {
+      return this.left != null;
+    }
+
     public TrieNode getParent() {
         return parent;
     }

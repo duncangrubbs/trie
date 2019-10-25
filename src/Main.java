@@ -23,6 +23,9 @@ public class Main {
         for (TrieNode node : nodes) {
             System.out.println(node.getData());
         }
+
+        System.out.println("\nSearching for: 001010101");
+        System.out.printf("Result: %s\n", t.search("001010101"));
     }
 
 }

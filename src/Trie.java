@@ -106,6 +106,49 @@ public class Trie {
     }
 
     /**
+     * Find the best match my alphabetical order
+     * on a list generated from DFS on a given node.
+     * @param node Node to start DFS on.
+     * @return Best lexicographical LCP match.
+     */
+    public String bestLexicographicMatch(TrieNode node) {
+      ArrayList<TrieNode> lexicographicList = new ArrayList<>();
+      lexicographicList = this.recursiveList(node, lexicographicList);
+
+      for (TrieNode n : lexicographicList) {
+        if (n.isLeaf()) {
+          return n.getData();
+        }
+      }
+      return null;
+    }
+
+    /**
+     * Finds string in Trie with longest
+     * common prefix. (LCP)
+     * @param key Search String
+     * @return String with LCP
+     */
+    public String search(String key) {
+      if (this.root == null) { return null; }
+      char[] keyArray = key.toCharArray();
+      TrieNode current = this.root;
+      for (int i = 0; i < keyArray.length; i++) {
+        if (current.isLeaf()) {
+          return current.getData();
+        }
+        if (keyArray[i] == '0') {
+          if (!current.hasLeft()) { return bestLexicographicMatch(current); }
+          current = current.getLeft();
+        } else {
+          if (!current.hasRight()) { return bestLexicographicMatch(current); }
+          current = current.getRight();
+        }
+      }
+      return bestLexicographicMatch(current);
+    }
+
+    /**
      * Prints the Trie through recursive DFS
      * @param root Root node of Trie
      */
